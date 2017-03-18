@@ -25,6 +25,7 @@ namespace LinkDib.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(LinkFormViewModel viewModel)
         {
             if (!ModelState.IsValid)

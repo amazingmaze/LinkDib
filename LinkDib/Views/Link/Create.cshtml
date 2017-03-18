@@ -7,6 +7,7 @@
 <h2>Create</h2>
 @using (Html.BeginForm("Create", "Link"))
 {
+    @Html.AntiForgeryToken()
     <div class="form-group">
         @Html.LabelFor(m => m.Url)
         @Html.TextBoxFor(m => m.Url, new { @class = "form-control" })
