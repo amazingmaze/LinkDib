@@ -190,6 +190,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LinkController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -214,13 +215,31 @@
     <Compile Include="Migrations\201703171136179_AddedLinkAndLinkMessage3.Designer.cs">
       <DependentUpon>201703171136179_AddedLinkAndLinkMessage3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703171214187_AddedCategoryModel.cs" />
+    <Compile Include="Migrations\201703171214187_AddedCategoryModel.Designer.cs">
+      <DependentUpon>201703171214187_AddedCategoryModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703171217395_RemovedCategoryModel.cs" />
+    <Compile Include="Migrations\201703171217395_RemovedCategoryModel.Designer.cs">
+      <DependentUpon>201703171217395_RemovedCategoryModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703171248032_UpdatedLinkModel.cs" />
+    <Compile Include="Migrations\201703171248032_UpdatedLinkModel.Designer.cs">
+      <DependentUpon>201703171248032_UpdatedLinkModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703171300522_UpdatedLinkModel1.cs" />
+    <Compile Include="Migrations\201703171300522_UpdatedLinkModel1.Designer.cs">
+      <DependentUpon>201703171300522_UpdatedLinkModel1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Link.cs" />
     <Compile Include="Models\LinkMessage.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Validation\UrlValidation.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="ViewModels\LinkFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -285,6 +304,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Link\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -317,6 +337,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703171136179_AddedLinkAndLinkMessage3.resx">
       <DependentUpon>201703171136179_AddedLinkAndLinkMessage3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703171214187_AddedCategoryModel.resx">
+      <DependentUpon>201703171214187_AddedCategoryModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703171217395_RemovedCategoryModel.resx">
+      <DependentUpon>201703171217395_RemovedCategoryModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703171248032_UpdatedLinkModel.resx">
+      <DependentUpon>201703171248032_UpdatedLinkModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703171300522_UpdatedLinkModel1.resx">
+      <DependentUpon>201703171300522_UpdatedLinkModel1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

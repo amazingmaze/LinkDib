@@ -1,0 +1,33 @@
+﻿@model LinkDib.ViewModels.LinkFormViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "Link"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Url)
+        @Html.TextBoxFor(m => m.Url, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Url)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Message)
+        @Html.TextBoxFor(m => m.Message, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Message)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LinkCategory)
+        @Html.TextBoxFor(m => m.LinkCategory, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.LinkCategory)
+    </div>
+    <button type="submit" class="btn btn-default">Save</button>
+
+}
+
+@section scripts 
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

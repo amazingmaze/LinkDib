@@ -8,5 +8,10 @@ namespace LinkDib.Models
 
         [Required]
         public string Message { get; set; }
+
+        public LinkMessage(string message)
+        {
+            Message = message;
+        }
     }
 }

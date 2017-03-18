@@ -10,6 +10,8 @@ namespace LinkDib.Controllers
     {
         public ActionResult Index()
         {
+
+
             return View();
         }
 
