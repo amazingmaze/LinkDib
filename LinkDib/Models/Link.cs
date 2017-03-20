@@ -14,24 +14,28 @@ namespace LinkDib.Models
         [Required]
         public string Url { get; set; }
 
+        // Navigation property
+        public ApplicationUser User { get; set; }
+
         [Required]
         public string UserId { get; set; }
 
         public DateTime DateTime { get; set; }
 
-        [Required]
-        public LinkMessage Message { get; set; }
+        public string Message { get; set; }
 
-        public string LinkCategory { get; set; }
+        // Navigation property
+        public Category Category { get; set; }
+
+        [Required]
+        public int CategoryId { get; set; }
 
         public string Thumbnail { get; set; }
 
         public Link()
         {
             //TODO: Get and set user from here instead of controller?
-
             DateTime = DateTime.Now;
-            LinkCategory = "TempCat";
             Thumbnail = "TempThumb";
         }
     }

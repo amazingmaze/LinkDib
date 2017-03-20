@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: "Open Sans";
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,3 +23,61 @@ select,
 textarea {
     max-width: 280px;
 }
+
+span.field-validation-error {
+    color: red;
+    font-weight: bold;
+}
+
+/* Bootstrap overrides */
+.navbar-inverse {
+    background-color: #eadcc3;
+    border-color: #080808;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-control {
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.btn {
+    padding: 5px 23px;
+    border-radius: 2px;
+}
+
+.form-control:focus {
+    border-color: #eadcc3;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.dropdown-menu {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+

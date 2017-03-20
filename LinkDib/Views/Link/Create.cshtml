@@ -4,27 +4,26 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h3>Share a link</h3>
 @using (Html.BeginForm("Create", "Link"))
 {
     @Html.AntiForgeryToken()
     <div class="form-group">
         @Html.LabelFor(m => m.Url)
-        @Html.TextBoxFor(m => m.Url, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Url, new { @class = "form-control", autofocus ="autofocus", placeholder = "eg. http://www.google.se " })
         @Html.ValidationMessageFor(m => m.Url)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Message)
-        @Html.TextBoxFor(m => m.Message, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Message, new { @class = "form-control", placeholder = "eg. This is so funny!" })
         @Html.ValidationMessageFor(m => m.Message)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.LinkCategory)
-        @Html.TextBoxFor(m => m.LinkCategory, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.LinkCategory)
+        @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "Id", "Name"), new { @class = "form-control"})
+        <p><strong>TODO: Select predefined categories or create a new one</strong>
+        </p>
     </div>
     <button type="submit" class="btn btn-default">Save</button>
-
 }
 
 @section scripts 

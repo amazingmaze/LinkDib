@@ -195,48 +195,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703171058364_InitialModel.cs" />
-    <Compile Include="Migrations\201703171058364_InitialModel.Designer.cs">
-      <DependentUpon>201703171058364_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703171121465_AddedLinkAndLinkMessage.cs" />
-    <Compile Include="Migrations\201703171121465_AddedLinkAndLinkMessage.Designer.cs">
-      <DependentUpon>201703171121465_AddedLinkAndLinkMessage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703171127042_AddedLinkAndLinkMessage1.cs" />
-    <Compile Include="Migrations\201703171127042_AddedLinkAndLinkMessage1.Designer.cs">
-      <DependentUpon>201703171127042_AddedLinkAndLinkMessage1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703171130069_AddedLinkAndLinkMessage2.cs" />
-    <Compile Include="Migrations\201703171130069_AddedLinkAndLinkMessage2.Designer.cs">
-      <DependentUpon>201703171130069_AddedLinkAndLinkMessage2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703171136179_AddedLinkAndLinkMessage3.cs" />
-    <Compile Include="Migrations\201703171136179_AddedLinkAndLinkMessage3.Designer.cs">
-      <DependentUpon>201703171136179_AddedLinkAndLinkMessage3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703171214187_AddedCategoryModel.cs" />
-    <Compile Include="Migrations\201703171214187_AddedCategoryModel.Designer.cs">
-      <DependentUpon>201703171214187_AddedCategoryModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703171217395_RemovedCategoryModel.cs" />
-    <Compile Include="Migrations\201703171217395_RemovedCategoryModel.Designer.cs">
-      <DependentUpon>201703171217395_RemovedCategoryModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703171248032_UpdatedLinkModel.cs" />
-    <Compile Include="Migrations\201703171248032_UpdatedLinkModel.Designer.cs">
-      <DependentUpon>201703171248032_UpdatedLinkModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703171300522_UpdatedLinkModel1.cs" />
-    <Compile Include="Migrations\201703171300522_UpdatedLinkModel1.Designer.cs">
-      <DependentUpon>201703171300522_UpdatedLinkModel1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Link.cs" />
-    <Compile Include="Models\LinkMessage.cs" />
     <Compile Include="Validation\UrlValidation.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="ViewModels\LinkFormViewModel.cs" />
@@ -305,8 +269,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Link\Create.cshtml" />
+    <Content Include="Views\Link\List.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
@@ -321,35 +285,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703171058364_InitialModel.resx">
-      <DependentUpon>201703171058364_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703171121465_AddedLinkAndLinkMessage.resx">
-      <DependentUpon>201703171121465_AddedLinkAndLinkMessage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703171127042_AddedLinkAndLinkMessage1.resx">
-      <DependentUpon>201703171127042_AddedLinkAndLinkMessage1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703171130069_AddedLinkAndLinkMessage2.resx">
-      <DependentUpon>201703171130069_AddedLinkAndLinkMessage2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703171136179_AddedLinkAndLinkMessage3.resx">
-      <DependentUpon>201703171136179_AddedLinkAndLinkMessage3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703171214187_AddedCategoryModel.resx">
-      <DependentUpon>201703171214187_AddedCategoryModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703171217395_RemovedCategoryModel.resx">
-      <DependentUpon>201703171217395_RemovedCategoryModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703171248032_UpdatedLinkModel.resx">
-      <DependentUpon>201703171248032_UpdatedLinkModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703171300522_UpdatedLinkModel1.resx">
-      <DependentUpon>201703171300522_UpdatedLinkModel1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

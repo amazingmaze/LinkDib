@@ -1,0 +1,17 @@
+﻿@model IEnumerable<LinkDib.Models.Link>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Links</h2>
+
+<ul>
+    @foreach (var link in Model)
+    {
+        <li>@link.Url </li>
+        <li>@link.Message </li>
+        <li>@link.User.UserName</li>
+        <li>@link.Category.Name</li>
+    }
+</ul>
+

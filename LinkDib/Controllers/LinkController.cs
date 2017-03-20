@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using LinkDib.Models;
 using LinkDib.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 
 namespace LinkDib.Controllers
 {
@@ -18,10 +19,15 @@ namespace LinkDib.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            var viewModel = new LinkFormViewModel();
+            var viewModel = new LinkFormViewModel
+            {
+                Categories = _context.Categories.ToList()
+            };
 
             return View(viewModel);
+
         }
+
 
         [Authorize]
         [HttpPost]
@@ -31,17 +37,29 @@ namespace LinkDib.Controllers
             if (!ModelState.IsValid)
                 return View("Create", viewModel);
 
+
             var link = new Link
             {
                 Url = viewModel.Url,
                 UserId = User.Identity.GetUserId(),
-                Message = new LinkMessage(viewModel.Message)
+                Message = viewModel.Message,
+                CategoryId = viewModel.CategoryId
             };
 
             _context.Links.Add(link);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        public ActionResult List()
+        {
+            var links = _context.Links
+                .Include(l => l.User)
+                .Include(l => l.Category);
+
+            return View(links);
         }
     }
 }
