@@ -81,3 +81,39 @@ h6,
     font-weight: 700;
 }
 
+/* Page-specific styles */
+
+/* Nav-bar */
+
+.logo {
+    font-size: 30px;
+}
+
+
+/* END OF NAV-BAR*/
+
+/* Link-listing*/
+
+.links {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.links .details {
+    padding-left: 5px;
+}
+
+.links .thumbnail {
+    background: grey;
+    padding: 80px;
+}
+
+.links .date_user {
+    padding: 5px 0;
+}
+
+.links .displayname {
+    font-weight: bold;
+}
+
+/* END OF LINK-LISTING */

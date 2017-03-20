@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace LinkDib.Models
+namespace LinkDib.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -79,6 +79,12 @@ namespace LinkDib.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+
+        // TODO: Make sure DisplayName is unique
+        [Required]
+        [Display(Name = "Enter your display name")]
+        public string DisplayName { get; set; }
     }
 
     public class ResetPasswordViewModel

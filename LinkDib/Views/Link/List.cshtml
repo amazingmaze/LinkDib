@@ -5,13 +5,41 @@
 
 <h2>Links</h2>
 
-<ul>
+<ul class="links">
     @foreach (var link in Model)
     {
-        <li>@link.Url </li>
-        <li>@link.Message </li>
-        <li>@link.User.UserName</li>
-        <li>@link.Category.Name</li>
+        <li class="container">
+            
+            <div class="panel panel-default details">
+                <div class="panel-body">
+                    
+                    <div class="row date_user">
+                        <div class="col-sm-9">
+                            @link.DateTime
+                        </div>
+                        <div class="col-sm-3 displayname">
+                            @link.User.DisplayName
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-4 thumbnail">
+                            @link.Thumbnail
+                        </div>
+                        <div class="col-sm-8">
+                            <span>@link.Message</span>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                        <span class="glyphicon glyphicon-heart"></span>
+                    </div>
+
+                </div>
+            </div>
+
+        </li>
     }
 </ul>
-
