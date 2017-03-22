@@ -6,23 +6,45 @@
 
 <h2>Links</h2>
 
-<ul class="links">
+<div class="panel panel-default details">
+    <div class="panel-body">
+        <div class="col-sm-3">
+            Filter by category:
+        </div>
+        <div class="col-sm-4">
+            Display: Public, Private, Followed
+        </div>
+    </div>
+</div>
+
+<ul class="links container">
     @foreach (var link in Model.Links)
     {
-        <li class="container">
-            
+        <li>
             <div class="panel panel-default details">
                 <div class="panel-body">
-                    
                     <div class="row date_user">
-                        <div class="col-sm-9">
+                        <div class="col-sm-4">
                             <span>
                                 @link.Category.Name
                             </span>
-                           
-                        </div>
-                        <div class="col-sm-3 displayname">
                             
+                            @if (Model.Authenticated && link.User.Id == User.Identity.GetUserId())
+                            {
+                                <div class="pull-right actions">
+                                    <a href="@Url.Action("Edit", "Link", new { id = link.Id })">Edit</a> 
+                                    <span>|</span>
+                                    <a href="#">Delete</a>
+                                </div>
+                            }
+
+                        </div>
+                        
+                        @* Temporary. Empty cols *@
+                        <div class="col-sm-5"></div>
+
+                        <div class="col-sm-3 displayname">
+
                             <span class="pull-right">
 
                                 @if (Model.Authenticated)
@@ -36,14 +58,11 @@
                                         @link.User.DisplayName
                                         <button data-user-id="@link.User.Id" class="btn btn-default btn-sm js-toggle-follow">Follow</button>
                                     }
-
                                 }
                             </span>
-                            
                         </div>
-                        
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-sm-4 thumbnail">
                             @link.Thumbnail
@@ -52,10 +71,10 @@
                             <span>@link.Message</span>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-sm-4">
-                            
+
                             <span>(54)</span>
 
                             @if (Model.Authenticated)
@@ -73,49 +92,49 @@
 </ul>
 
 
-@section scripts 
+@section scripts
 {
-    <script>
-        $(document).ready(function() {
-            $(".js-toggle-favorite").click(function(e) {
-                var button = $(e.target);
-                $.post("/api/favorites", { linkId : button.attr("data-link-id") })
-                    .done(function() {
-                        button
-                            .removeClass("btn-default")
-                            .addClass("btn-info")
-                            .text("Favorite");
+        <script>
+            $(document).ready(function () {
+                $(".js-toggle-favorite").click(function (e) {
+                    var button = $(e.target);
+                    $.post("/api/favorites", { linkId: button.attr("data-link-id") })
+                        .done(function () {
+                            button
+                                .removeClass("btn-default")
+                                .addClass("btn-info")
+                                .text("Favorite");
 
-                    }).fail(function() {
-                        alert("Favorite failed..");
-                    });
-            });
-            $(".js-toggle-like").click(function (e) {
-                var button = $(e.target);
-                $.post("/api/likes", { linkId: button.attr("data-link-id") })
-                    .done(function () {
-                        button
-                            .removeClass("btn-default")
-                            .addClass("btn-info")
-                            .text("Liked");
+                        }).fail(function () {
+                            alert("Favorite failed..");
+                        });
+                });
+                $(".js-toggle-like").click(function (e) {
+                    var button = $(e.target);
+                    $.post("/api/likes", { linkId: button.attr("data-link-id") })
+                        .done(function () {
+                            button
+                                .removeClass("btn-default")
+                                .addClass("btn-info")
+                                .text("Liked");
 
-                    }).fail(function () {
-                        alert("Liking failed..");
-                    });
-            });
-            $(".js-toggle-follow").click(function (e) {
-                var button = $(e.target);
-                $.post("/api/following", { followeeId: button.attr("data-user-id") })
-                    .done(function () {
-                        button
-                            .removeClass("btn-default")
-                            .addClass("btn-info")
-                            .text("Followed");
+                        }).fail(function () {
+                            alert("Liking failed..");
+                        });
+                });
+                $(".js-toggle-follow").click(function (e) {
+                    var button = $(e.target);
+                    $.post("/api/following", { followeeId: button.attr("data-user-id") })
+                        .done(function () {
+                            button
+                                .removeClass("btn-default")
+                                .addClass("btn-info")
+                                .text("Followed");
 
-                    }).fail(function () {
-                        alert("Following failed..");
-                    });
+                        }).fail(function () {
+                            alert("Following failed..");
+                        });
+                });
             });
-        });
-    </script>     
-}
+        </script>
+    }

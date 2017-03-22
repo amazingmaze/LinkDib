@@ -116,4 +116,13 @@ h6,
     font-weight: bold;
 }
 
+.links > li .actions {
+    font-size: 12px;
+    display: none;
+}
+
+.links > li:hover .actions {
+    display: block;
+}
+
 /* END OF LINK-LISTING */

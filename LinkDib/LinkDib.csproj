@@ -218,6 +218,10 @@
     <Compile Include="Migrations\201703221005237_AddedFollowings.Designer.cs">
       <DependentUpon>201703221005237_AddedFollowings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703221107187_AddedPermissions.cs" />
+    <Compile Include="Migrations\201703221107187_AddedPermissions.Designer.cs">
+      <DependentUpon>201703221107187_AddedPermissions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Favorite.cs" />
     <Compile Include="Models\Following.cs" />
@@ -292,7 +296,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Link\Create.cshtml" />
+    <Content Include="Views\Link\LinkForm.cshtml" />
     <Content Include="Views\Link\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703221005237_AddedFollowings.resx">
       <DependentUpon>201703221005237_AddedFollowings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703221107187_AddedPermissions.resx">
+      <DependentUpon>201703221107187_AddedPermissions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

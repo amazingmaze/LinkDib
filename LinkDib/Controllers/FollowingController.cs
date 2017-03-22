@@ -20,6 +20,7 @@ namespace LinkDib.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IHttpActionResult Follow(FollowingDto dto)
         {
             var userId = User.Identity.GetUserId();

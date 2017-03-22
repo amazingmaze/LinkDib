@@ -7,6 +7,13 @@ using System.Web.Services.Description;
 
 namespace LinkDib.Models
 {
+    public enum Permissions
+    {
+        Public = 0,
+        Private = 1,
+        FollowersOnly = 2
+    }
+
     public class Link
     {
         public int Id { get; set; }
@@ -32,11 +39,17 @@ namespace LinkDib.Models
 
         public string Thumbnail { get; set; }
 
+        [Required]
+        public Permissions Permission { get; set; }
+
         public Link()
         {
             //TODO: Get and set user from here instead of controller?
             DateTime = DateTime.Now;
             Thumbnail = "TempThumb";
         }
+
     }
+
+
 }

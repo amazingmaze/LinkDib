@@ -20,6 +20,7 @@ namespace LinkDib.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IHttpActionResult Favorite(FavoriteDto dto)
         {
             var userId = User.Identity.GetUserId();

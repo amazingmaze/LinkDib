@@ -9,6 +9,8 @@ namespace LinkDib.ViewModels
 {
     public class LinkFormViewModel
     {
+        public int Id { get; set; }
+
         public ApplicationUser User { get; set; }
 
         [Required]
@@ -25,5 +27,10 @@ namespace LinkDib.ViewModels
         public Category Category { get; set; }
 
         public string Thumbnail { get; set; }
+
+        [Required]
+        public Permissions Permission { get; set; }
+
+        public string Action => Id != 0 ? "Update" : "Create";
     }
 }

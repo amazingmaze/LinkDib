@@ -4,10 +4,12 @@
     ViewBag.Title = "Create";
 }
 
-<h3>Share a link</h3>
-@using (Html.BeginForm("Create", "Link"))
+<h3>@Model.Action</h3>
+@using (Html.BeginForm(Model.Action, "Link"))
 {
+
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
     <div class="form-group">
         @Html.LabelFor(m => m.Url)
         @Html.TextBoxFor(m => m.Url, new { @class = "form-control", autofocus ="autofocus", placeholder = "eg. http://www.google.se " })
@@ -19,10 +21,16 @@
         @Html.ValidationMessageFor(m => m.Message)
     </div>
     <div class="form-group">
-        @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "Id", "Name"), new { @class = "form-control"})
-        <p><strong>TODO: Select predefined categories or create a new one</strong>
-        </p>
+        @Html.LabelFor(m => m.Category)
+        @Html.DropDownListFor(m => m.CategoryId, new SelectList(Model.Categories, "Id", "Name"), new {@class = "form-control"})
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Permission)
+        @Html.EnumDropDownListFor(model => model.Permission,  new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Permission)
+    </div>
+
     <button type="submit" class="btn btn-default">Save</button>
 }
 
