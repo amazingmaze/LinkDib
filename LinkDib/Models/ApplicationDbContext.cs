@@ -10,6 +10,7 @@ namespace LinkDib.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<Like> Likes { get; set; }
+        public DbSet<Following> Followings { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -25,6 +26,7 @@ namespace LinkDib.Models
         {
             modelBuilder.Entity<Favorite>().HasRequired(f => f.User).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<Link>().HasRequired(f => f.User).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<Following>().HasRequired(f => f.Follower).WithMany().WillCascadeOnDelete(false);
             base.OnModelCreating(modelBuilder);
         }
     }

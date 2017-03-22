@@ -200,10 +200,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FavoritesController.cs" />
+    <Compile Include="Controllers\FollowingController.cs" />
     <Compile Include="Controllers\LikesController.cs" />
     <Compile Include="Controllers\LinkController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Dtos\FavoriteDto.cs" />
+    <Compile Include="Dtos\FollowingDto.cs" />
     <Compile Include="Dtos\LikeDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -212,8 +214,13 @@
     <Compile Include="Migrations\201703220913595_AddedLikes.Designer.cs">
       <DependentUpon>201703220913595_AddedLikes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703221005237_AddedFollowings.cs" />
+    <Compile Include="Migrations\201703221005237_AddedFollowings.Designer.cs">
+      <DependentUpon>201703221005237_AddedFollowings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Favorite.cs" />
+    <Compile Include="Models\Following.cs" />
     <Compile Include="Models\Like.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -306,6 +313,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703220913595_AddedLikes.resx">
       <DependentUpon>201703220913595_AddedLikes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703221005237_AddedFollowings.resx">
+      <DependentUpon>201703221005237_AddedFollowings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

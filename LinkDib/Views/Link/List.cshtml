@@ -1,4 +1,5 @@
-﻿@model LinkDib.ViewModels.LinkListViewModel
+﻿@using Microsoft.AspNet.Identity
+@model LinkDib.ViewModels.LinkListViewModel
 @{
     ViewBag.Title = "List";
 }
@@ -15,15 +16,30 @@
                     
                     <div class="row date_user">
                         <div class="col-sm-9">
-                            @link.Category.Name
+                            <span>
+                                @link.Category.Name
+                            </span>
+                           
                         </div>
                         <div class="col-sm-3 displayname">
-                            @link.User.DisplayName
                             
-                            @if (Model.Authenticated)
-                            {
-                                <span>(Follow)</span>
-                            }
+                            <span class="pull-right">
+
+                                @if (Model.Authenticated)
+                                {
+                                    if (link.User.Id == User.Identity.GetUserId())
+                                    {
+                                        <span>@link.User.DisplayName (You)</span>
+                                    }
+                                    else
+                                    {
+                                        @link.User.DisplayName
+                                        <button data-user-id="@link.User.Id" class="btn btn-default btn-sm js-toggle-follow">Follow</button>
+                                    }
+
+                                }
+                            </span>
+                            
                         </div>
                         
                     </div>
@@ -85,6 +101,19 @@
 
                     }).fail(function () {
                         alert("Liking failed..");
+                    });
+            });
+            $(".js-toggle-follow").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/following", { followeeId: button.attr("data-user-id") })
+                    .done(function () {
+                        button
+                            .removeClass("btn-default")
+                            .addClass("btn-info")
+                            .text("Followed");
+
+                    }).fail(function () {
+                        alert("Following failed..");
                     });
             });
         });
