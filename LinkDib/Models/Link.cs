@@ -42,6 +42,8 @@ namespace LinkDib.Models
         [Required]
         public Permissions Permission { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public Link()
         {
             //TODO: Get and set user from here instead of controller?

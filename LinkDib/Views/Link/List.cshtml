@@ -33,8 +33,8 @@
                             {
                                 <div class="pull-right actions">
                                     <a href="@Url.Action("Edit", "Link", new { id = link.Id })">Edit</a> 
-                                    <span>|</span>
-                                    <a href="#">Delete</a>
+                                    |
+                                    <a href="#" data-link-id="@link.Id" class="js-cancel-link">Delete</a>
                                 </div>
                             }
 
@@ -109,6 +109,7 @@
                             alert("Favorite failed..");
                         });
                 });
+
                 $(".js-toggle-like").click(function (e) {
                     var button = $(e.target);
                     $.post("/api/likes", { linkId: button.attr("data-link-id") })
@@ -122,6 +123,7 @@
                             alert("Liking failed..");
                         });
                 });
+
                 $(".js-toggle-follow").click(function (e) {
                     var button = $(e.target);
                     $.post("/api/following", { followeeId: button.attr("data-user-id") })
@@ -135,6 +137,29 @@
                             alert("Following failed..");
                         });
                 });
+
+                $(".js-cancel-link").click(function(e) {
+                    bootbox.confirm("Are you sure you want to delete this link?", function (result) {
+                        var link = $(e.target);
+                        if (!result) {
+                            return;
+                        } else {
+                            $.ajax({
+                                url: "/api/link/" + link.attr("data-link-id"),
+                                method: "DELETE"
+                            })
+                                .done(function () {
+                                    link.parents("li").fadeOut(function () {
+                                        $(this).remove();
+                                    });
+                                })
+                                .fail(function () {
+                                    alert("Delete failed");
+                                });
+                        }
+                    });
+                });
+               
             });
         </script>
     }

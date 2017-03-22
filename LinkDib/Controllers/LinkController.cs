@@ -78,8 +78,10 @@ namespace LinkDib.Controllers
         {
 
             var links = _context.Links
+                .Where(l => l.IsDeleted != true)
                 .Include(l => l.User)
-                .Include(l => l.Category);
+                .Include(l => l.Category)
+                .OrderByDescending(l => l.DateTime);
 
             var viewModel = new LinkListViewModel
             {

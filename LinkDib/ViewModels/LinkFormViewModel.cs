@@ -31,6 +31,8 @@ namespace LinkDib.ViewModels
         [Required]
         public Permissions Permission { get; set; }
 
+        // TODO: Replace magic strings?
         public string Action => Id != 0 ? "Update" : "Create";
+
     }
 }

@@ -199,6 +199,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\LinkController.cs" />
     <Compile Include="Controllers\FavoritesController.cs" />
     <Compile Include="Controllers\FollowingController.cs" />
     <Compile Include="Controllers\LikesController.cs" />
@@ -221,6 +222,10 @@
     <Compile Include="Migrations\201703221107187_AddedPermissions.cs" />
     <Compile Include="Migrations\201703221107187_AddedPermissions.Designer.cs">
       <DependentUpon>201703221107187_AddedPermissions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703221342523_AddDeletedLink.cs" />
+    <Compile Include="Migrations\201703221342523_AddDeletedLink.Designer.cs">
+      <DependentUpon>201703221342523_AddDeletedLink.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Favorite.cs" />
@@ -249,6 +254,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -324,7 +331,11 @@
     <EmbeddedResource Include="Migrations\201703221107187_AddedPermissions.resx">
       <DependentUpon>201703221107187_AddedPermissions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703221342523_AddDeletedLink.resx">
+      <DependentUpon>201703221342523_AddDeletedLink.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
