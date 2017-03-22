@@ -49,17 +49,20 @@ namespace LinkDib.Controllers
             _context.Links.Add(link);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("List", "Link");
         }
 
-        [Authorize]
         public ActionResult List()
         {
-            var links = _context.Links
+            var viewModel = new LinkListViewModel
+            {
+                Links = _context.Links
                 .Include(l => l.User)
-                .Include(l => l.Category);
+                .Include(l => l.Category),
+                Authenticated = User.Identity.IsAuthenticated
+            };
 
-            return View(links);
+            return View(viewModel);
         }
     }
 }

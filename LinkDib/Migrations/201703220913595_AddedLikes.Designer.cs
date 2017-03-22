@@ -7,13 +7,13 @@ namespace LinkDib.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddFavorite : IMigrationMetadata
+    public sealed partial class AddedLikes : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddFavorite));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedLikes));
         
         string IMigrationMetadata.Id
         {
-            get { return "201703201202164_AddFavorite"; }
+            get { return "201703220913595_AddedLikes"; }
         }
         
         string IMigrationMetadata.Source

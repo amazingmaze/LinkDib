@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LinkDib.Models.Link>
+﻿@model LinkDib.ViewModels.LinkListViewModel
 @{
     ViewBag.Title = "List";
 }
@@ -6,7 +6,7 @@
 <h2>Links</h2>
 
 <ul class="links">
-    @foreach (var link in Model)
+    @foreach (var link in Model.Links)
     {
         <li class="container">
             
@@ -15,10 +15,15 @@
                     
                     <div class="row date_user">
                         <div class="col-sm-9">
-                            @link.DateTime
+                            @link.Category.Name
                         </div>
                         <div class="col-sm-3 displayname">
                             @link.User.DisplayName
+                            
+                            @if (Model.Authenticated)
+                            {
+                                <span>(Follow)</span>
+                            }
                         </div>
                         
                     </div>
@@ -33,13 +38,55 @@
                     </div>
                     
                     <div class="row">
-                        <span class="glyphicon glyphicon-thumbs-up"></span>
-                        <span class="glyphicon glyphicon-heart"></span>
-                    </div>
+                        <div class="col-sm-4">
+                            
+                            <span>(54)</span>
 
+                            @if (Model.Authenticated)
+                            {
+                                <button data-link-id="@link.Id" class="btn btn-default btn-sm js-toggle-like">Like?</button>
+                                <button data-link-id="@link.Id" class="btn btn-default btn-sm js-toggle-favorite">Favorite?</button>
+                            }
+                            <span class="pull-right">@link.DateTime</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </li>
     }
 </ul>
+
+
+@section scripts 
+{
+    <script>
+        $(document).ready(function() {
+            $(".js-toggle-favorite").click(function(e) {
+                var button = $(e.target);
+                $.post("/api/favorites", { linkId : button.attr("data-link-id") })
+                    .done(function() {
+                        button
+                            .removeClass("btn-default")
+                            .addClass("btn-info")
+                            .text("Favorite");
+
+                    }).fail(function() {
+                        alert("Favorite failed..");
+                    });
+            });
+            $(".js-toggle-like").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/likes", { linkId: button.attr("data-link-id") })
+                    .done(function () {
+                        button
+                            .removeClass("btn-default")
+                            .addClass("btn-info")
+                            .text("Liked");
+
+                    }).fail(function () {
+                        alert("Liking failed..");
+                    });
+            });
+        });
+    </script>     
+}
