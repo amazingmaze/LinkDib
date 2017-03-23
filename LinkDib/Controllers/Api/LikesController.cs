@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using LinkDib.Dtos;
 using LinkDib.Models;
 using Microsoft.AspNet.Identity;
 
-namespace LinkDib.Controllers
+namespace LinkDib.Controllers.Api
 {
     public class LikesController : ApiController
     {
@@ -39,6 +35,23 @@ namespace LinkDib.Controllers
 
             return Ok();
 
+        }
+
+        [HttpDelete]
+        [Authorize]
+        public IHttpActionResult DeleteLike(int id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var like = _context.Likes.SingleOrDefault(l => l.UserId == userId && l.LinkId == id);
+
+            if (like == null)
+                return NotFound();
+
+            _context.Likes.Remove(like);
+            _context.SaveChanges();
+
+            return Ok();
         }
 
     }

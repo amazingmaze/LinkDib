@@ -8,16 +8,19 @@
 
 <div class="panel panel-default details">
     <div class="panel-body">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             Filter by category:
         </div>
         <div class="col-sm-4">
             Display: Public, Private, Followed
         </div>
+        <div class="pull-right">
+            Display: Previews
+        </div>
     </div>
 </div>
 
-<ul class="links container">
+<ul id="links" class="links container">
     @foreach (var link in Model.Links)
     {
         <li>
@@ -27,6 +30,10 @@
                         <div class="col-sm-4">
                             <span>
                                 @link.Category.Name
+                            </span>
+                            
+                            <span>
+                                (@link.Permission)
                             </span>
                             
                             @if (Model.Authenticated && link.User.Id == User.Identity.GetUserId())
@@ -56,7 +63,7 @@
                                     else
                                     {
                                         @link.User.DisplayName
-                                        <button data-user-id="@link.User.Id" class="btn btn-default btn-sm js-toggle-follow">Follow</button>
+                                        <button data-user-id="@link.User.Id" class="btn @(Model.Followees.Contains(link.UserId) ? "btn-info" : "btn-default") btn-sm js-toggle-follow">Follow</button>
                                     }
                                 }
                             </span>
@@ -75,12 +82,12 @@
                     <div class="row">
                         <div class="col-sm-4">
 
-                            <span>(54)</span>
+                            (54)
 
                             @if (Model.Authenticated)
                             {
-                                <button data-link-id="@link.Id" class="btn btn-default btn-sm js-toggle-like">Like?</button>
-                                <button data-link-id="@link.Id" class="btn btn-default btn-sm js-toggle-favorite">Favorite?</button>
+                                <i class="material-icons js-toggle-like icon thumbs_up @(Model.Likes.Contains(link.Id) ? "liked" : "notliked")"  data-link-id="@link.Id">&#xE8DC;</i>
+                                <i class="material-icons js-toggle-favorite icon favorite  @(Model.Favorites.Contains(link.Id) ? "favored" : "notfavored")" data-link-id="@link.Id">&#xE87D;</i>
                             }
                             <span class="pull-right">@link.DateTime</span>
                         </div>
@@ -96,70 +103,7 @@
 {
         <script>
             $(document).ready(function () {
-                $(".js-toggle-favorite").click(function (e) {
-                    var button = $(e.target);
-                    $.post("/api/favorites", { linkId: button.attr("data-link-id") })
-                        .done(function () {
-                            button
-                                .removeClass("btn-default")
-                                .addClass("btn-info")
-                                .text("Favorite");
-
-                        }).fail(function () {
-                            alert("Favorite failed..");
-                        });
-                });
-
-                $(".js-toggle-like").click(function (e) {
-                    var button = $(e.target);
-                    $.post("/api/likes", { linkId: button.attr("data-link-id") })
-                        .done(function () {
-                            button
-                                .removeClass("btn-default")
-                                .addClass("btn-info")
-                                .text("Liked");
-
-                        }).fail(function () {
-                            alert("Liking failed..");
-                        });
-                });
-
-                $(".js-toggle-follow").click(function (e) {
-                    var button = $(e.target);
-                    $.post("/api/following", { followeeId: button.attr("data-user-id") })
-                        .done(function () {
-                            button
-                                .removeClass("btn-default")
-                                .addClass("btn-info")
-                                .text("Followed");
-
-                        }).fail(function () {
-                            alert("Following failed..");
-                        });
-                });
-
-                $(".js-cancel-link").click(function(e) {
-                    bootbox.confirm("Are you sure you want to delete this link?", function (result) {
-                        var link = $(e.target);
-                        if (!result) {
-                            return;
-                        } else {
-                            $.ajax({
-                                url: "/api/link/" + link.attr("data-link-id"),
-                                method: "DELETE"
-                            })
-                                .done(function () {
-                                    link.parents("li").fadeOut(function () {
-                                        $(this).remove();
-                                    });
-                                })
-                                .fail(function () {
-                                    alert("Delete failed");
-                                });
-                        }
-                    });
-                });
-               
+                LinksController.init("#links");
             });
         </script>
-    }
+}

@@ -125,4 +125,23 @@ h6,
     display: block;
 }
 
+.thumbs_up.liked {
+    color: blue;
+}
+
+.thumbs_up.notliked {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.favorite.favored {
+    color: red;
+}
+
+.favorite.notfavored {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.icon {
+    cursor: pointer;
+}
 /* END OF LINK-LISTING */

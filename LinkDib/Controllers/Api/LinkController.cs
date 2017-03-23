@@ -24,6 +24,10 @@ namespace LinkDib.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
             var link = _context.Links.Single(l => l.Id == id && l.UserId == userId);
+
+            if (link.IsDeleted)
+                return NotFound();
+
             link.IsDeleted = true;
             _context.SaveChanges();
 

@@ -61,7 +61,7 @@ namespace LinkDib.Controllers
             if (!ModelState.IsValid)
                 return View("LinkForm", viewModel);
 
-            string userId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
             var link = _context.Links.Single(l => l.Id == viewModel.Id && l.UserId == userId);
 
             link.Category = viewModel.Category;
@@ -78,15 +78,25 @@ namespace LinkDib.Controllers
         {
 
             var links = _context.Links
-                .Where(l => l.IsDeleted != true)
+                .Where(l => !l.IsDeleted)
                 .Include(l => l.User)
                 .Include(l => l.Category)
                 .OrderByDescending(l => l.DateTime);
 
+            var userId = User.Identity.GetUserId();
+
+            // May need to check if a user is logged in?
+            var likes = _context.Likes.Where(l => l.UserId == userId).ToList().ToLookup(l => l.LinkId);
+            var favorites = _context.Favorites.Where(f => f.UserId == userId).ToList().ToLookup(l => l.LinkId);
+            var followees = _context.Followings.Where(f => f.FollowerId == userId).ToList().ToLookup(l => l.FolloweeId);
+
             var viewModel = new LinkListViewModel
             {
                 Links = links,
-                Authenticated = User.Identity.IsAuthenticated
+                Authenticated = User.Identity.IsAuthenticated,
+                Likes = likes,
+                Favorites = favorites,
+                Followees = followees
             };
 
             return View(viewModel);

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using LinkDib.Dtos;
 using LinkDib.Models;
 using Microsoft.AspNet.Identity;
 
-namespace LinkDib.Controllers
+namespace LinkDib.Controllers.Api
 {
     public class FavoritesController : ApiController
     {
@@ -38,6 +34,23 @@ namespace LinkDib.Controllers
 
 
             _context.Favorites.Add(favorite);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Authorize]
+        public IHttpActionResult DeleteFavorite(int id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var favorite = _context.Favorites.SingleOrDefault(f => f.UserId == userId && f.LinkId == id);
+
+            if (favorite == null)
+                return NotFound();
+
+            _context.Favorites.Remove(favorite);
             _context.SaveChanges();
 
             return Ok();
