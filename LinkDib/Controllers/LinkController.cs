@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using LinkDib.Models;
 using LinkDib.ViewModels;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Diagnostics;
 
 namespace LinkDib.Controllers
 {
@@ -37,17 +39,43 @@ namespace LinkDib.Controllers
             if (!ModelState.IsValid)
                 return View("LinkForm", viewModel);
 
+            var userId = User.Identity.GetUserId();
 
             var link = new Link
             {
                 Url = viewModel.Url,
-                UserId = User.Identity.GetUserId(),
+                UserId = userId,
                 Message = viewModel.Message,
                 CategoryId = viewModel.CategoryId,
                 Permission = viewModel.Permission
             };
 
             _context.Links.Add(link);
+
+            var notification = new Notification
+            {
+                UserId = userId,
+                Link = link,
+                Type = NotificationType.LinkNew
+            };
+
+            _context.Notifications.Add(notification);
+
+            var followers = _context.Followings.Where(f => f.FolloweeId == userId).Select(f => f.Follower).ToList();
+            Debug.Write("KALJSDLKASJ DLKASJD LKJASLKDJ ASLKJD LKASJ DLAKSJD LKASJ DLAKSJD LASKJ DLASJK DLKASJK DLSAJ SADLKJ JSALDJDLKAJ LDASKJ DLKASJ DSALK JDLSAK JD");
+            Debug.Write("Followers: " + followers.Count);
+
+            foreach (var follower in followers)
+            {
+                var userNotification = new UserNotification
+                {
+                    User = follower,
+                    //UserId = follower.Id,
+                    NotificationId = notification.Id
+                };
+                _context.UserNotifications.Add(userNotification);
+            }
+
             _context.SaveChanges();
 
             return RedirectToAction("List", "Link");

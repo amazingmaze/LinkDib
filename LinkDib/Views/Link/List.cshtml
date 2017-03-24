@@ -63,7 +63,7 @@
                                     else
                                     {
                                         @link.User.DisplayName
-                                        <button data-user-id="@link.User.Id" class="btn @(Model.Followees.Contains(link.UserId) ? "btn-info" : "btn-default") btn-sm js-toggle-follow">Follow</button>
+                                        <button data-user-id="@link.User.Id" class="btn @(Model.Followees.Contains(link.UserId) ? "btn-info" : "btn-default") btn-sm js-toggle-follow">@(Model.Followees.Contains(link.UserId) ? "Following" : "Follow")</button>
                                     }
                                 }
                             </span>

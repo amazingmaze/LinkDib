@@ -60,8 +60,7 @@ var LinksController = function (favoriteService, likeService, followService, lin
             var followIcon;
 
             var done = function () {
-                var text = (followIcon.hasClass("btn-default")) ? "Following" : "Follow"; 
-                followIcon.toggleClass("btn-default").toggleClass("btn-info").text(text);
+                followIcon.toggleClass("btn-info").toggleClass("btn-default").text( (followIcon.text() == "Following") ? "Follow" : "Following");
             };
 
             var fail = function () {
