@@ -28,7 +28,7 @@ namespace LinkDib.Controllers.Api
             if (link.IsDeleted)
                 return NotFound();
 
-            link.IsDeleted = true;
+            link.Delete();
             _context.SaveChanges();
 
             return Ok();

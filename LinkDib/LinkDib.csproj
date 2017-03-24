@@ -231,6 +231,18 @@
     <Compile Include="Migrations\201703240842108_AddNotifcations.Designer.cs">
       <DependentUpon>201703240842108_AddNotifcations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703240953417_Refactoring.cs" />
+    <Compile Include="Migrations\201703240953417_Refactoring.Designer.cs">
+      <DependentUpon>201703240953417_Refactoring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703241041482_ReverseRelationship.cs" />
+    <Compile Include="Migrations\201703241041482_ReverseRelationship.Designer.cs">
+      <DependentUpon>201703241041482_ReverseRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703241047383_ReverseRelationship1.cs" />
+    <Compile Include="Migrations\201703241047383_ReverseRelationship1.Designer.cs">
+      <DependentUpon>201703241047383_ReverseRelationship1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Favorite.cs" />
     <Compile Include="Models\Following.cs" />
@@ -348,6 +360,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703240842108_AddNotifcations.resx">
       <DependentUpon>201703240842108_AddNotifcations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703240953417_Refactoring.resx">
+      <DependentUpon>201703240953417_Refactoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703241041482_ReverseRelationship.resx">
+      <DependentUpon>201703241041482_ReverseRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703241047383_ReverseRelationship1.resx">
+      <DependentUpon>201703241047383_ReverseRelationship1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

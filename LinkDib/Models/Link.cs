@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Services.Description;
+using LinkDib.ViewModels;
 
 namespace LinkDib.Models
 {
@@ -16,18 +18,18 @@ namespace LinkDib.Models
 
     public class Link
     {
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
         [Required]
         public string Url { get; set; }
 
         // Navigation property
-        public ApplicationUser User { get; set; }
+        public ApplicationUser User { get; private set; }
 
         [Required]
-        public string UserId { get; set; }
+        public string UserId { get; private set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTime DateTime { get; private set; }
 
         public string Message { get; set; }
 
@@ -42,14 +44,31 @@ namespace LinkDib.Models
         [Required]
         public Permissions Permission { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; private set; }
 
-        public Link()
+
+        // Needed for Entity framework
+        protected Link()
         {
-            //TODO: Get and set user from here instead of controller?
+
+        }
+
+        public Link(string url, string userId, string message, int categoryId, Permissions permission)
+        {
+            Url = url;
+            UserId = userId;
+            Message = message;
+            CategoryId = categoryId;
+            Permission = permission;
             DateTime = DateTime.Now;
             Thumbnail = "TempThumb";
         }
+
+        public void Delete()
+        {
+            IsDeleted = true;
+        }
+
 
     }
 

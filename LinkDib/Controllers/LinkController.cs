@@ -41,39 +41,18 @@ namespace LinkDib.Controllers
 
             var userId = User.Identity.GetUserId();
 
-            var link = new Link
-            {
-                Url = viewModel.Url,
-                UserId = userId,
-                Message = viewModel.Message,
-                CategoryId = viewModel.CategoryId,
-                Permission = viewModel.Permission
-            };
-
+            var link = new Link(viewModel.Url, userId, viewModel.Message, viewModel.CategoryId, viewModel.Permission);
             _context.Links.Add(link);
 
-            var notification = new Notification
-            {
-                UserId = userId,
-                Link = link,
-                Type = NotificationType.LinkNew
-            };
-
+            var notification = new Notification(userId, link, NotificationType.LinkNew);
             _context.Notifications.Add(notification);
 
             var followers = _context.Followings.Where(f => f.FolloweeId == userId).Select(f => f.Follower).ToList();
-            Debug.Write("KALJSDLKASJ DLKASJD LKJASLKDJ ASLKJD LKASJ DLAKSJD LKASJ DLAKSJD LASKJ DLASJK DLKASJK DLSAJ SADLKJ JSALDJDLKAJ LDASKJ DLKASJ DSALK JDLSAK JD");
-            Debug.Write("Followers: " + followers.Count);
 
             foreach (var follower in followers)
             {
-                var userNotification = new UserNotification
-                {
-                    User = follower,
-                    //UserId = follower.Id,
-                    NotificationId = notification.Id
-                };
-                _context.UserNotifications.Add(userNotification);
+                follower.Notify(notification);
+
             }
 
             _context.SaveChanges();
@@ -113,7 +92,6 @@ namespace LinkDib.Controllers
 
             var userId = User.Identity.GetUserId();
 
-            // May need to check if a user is logged in?
             var likes = _context.Likes.Where(l => l.UserId == userId).ToList().ToLookup(l => l.LinkId);
             var favorites = _context.Favorites.Where(f => f.UserId == userId).ToList().ToLookup(l => l.LinkId);
             var followees = _context.Followings.Where(f => f.FollowerId == userId).ToList().ToLookup(l => l.FolloweeId);

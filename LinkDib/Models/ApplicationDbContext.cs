@@ -29,7 +29,10 @@ namespace LinkDib.Models
             modelBuilder.Entity<Favorite>().HasRequired(f => f.User).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<Link>().HasRequired(f => f.User).WithMany().WillCascadeOnDelete(false);
             modelBuilder.Entity<Following>().HasRequired(f => f.Follower).WithMany().WillCascadeOnDelete(false);
-            modelBuilder.Entity<UserNotification>().HasRequired(u => u.User).WithMany().WillCascadeOnDelete(false);
+
+            // TODO: Kolla upp hur förhållandet verkligen fungerar. "Reverse relationships". 
+            modelBuilder.Entity<UserNotification>().HasRequired(u => u.User).WithMany(u => u.UserNotifications).WillCascadeOnDelete(false);
+
             base.OnModelCreating(modelBuilder);
         }
     }

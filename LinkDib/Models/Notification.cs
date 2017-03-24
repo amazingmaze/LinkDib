@@ -15,16 +15,32 @@ namespace LinkDib.Models
 
     public class Notification
     {
-        public int Id { get; set; }
+        public int Id { get; private set; }
 
-        public ApplicationUser User { get; set; }
+        public ApplicationUser User { get; private set; }
 
-        public string UserId { get; set; }
+        public string UserId { get; private set; }
 
         [Required]
-        public Link Link { get; set; }
+        public Link Link { get; private set; }
 
-        public NotificationType Type { get; set; }
+        public NotificationType Type { get; private set; }
+
+        public DateTime DateTime { get; private set; }
+
+        // Needed for Entity framework
+        protected Notification()
+        {
+
+        }
+
+        public Notification(string userId, Link link, NotificationType type)
+        {
+            UserId = userId;
+            Link = link;
+            Type = type;
+            DateTime = DateTime.Now;
+        }
 
     }
 }
