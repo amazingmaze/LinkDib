@@ -102,7 +102,7 @@ var LinksController = function (favoriteService, likeService, followService, lin
                     if (!result) {
                         return;
                     } else {
-                        LinkService.deleteLink(linkId, done, fail);
+                        linkService.deleteLink(linkId, done, fail);
                     }
                 });
             };

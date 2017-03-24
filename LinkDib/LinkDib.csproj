@@ -227,10 +227,16 @@
     <Compile Include="Migrations\201703221342523_AddDeletedLink.Designer.cs">
       <DependentUpon>201703221342523_AddDeletedLink.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703240842108_AddNotifcations.cs" />
+    <Compile Include="Migrations\201703240842108_AddNotifcations.Designer.cs">
+      <DependentUpon>201703240842108_AddNotifcations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Favorite.cs" />
     <Compile Include="Models\Following.cs" />
     <Compile Include="Models\Like.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -339,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703221342523_AddDeletedLink.resx">
       <DependentUpon>201703221342523_AddDeletedLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703240842108_AddNotifcations.resx">
+      <DependentUpon>201703240842108_AddNotifcations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
